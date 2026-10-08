@@ -1,0 +1,4 @@
+cd path
+mingw32 -make
+gcc add.c fdsvdv.c fsdfsef.c … -o p1
+./p1

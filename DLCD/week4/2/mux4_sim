@@ -1,0 +1,145 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "14.0 (devel)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001662F4CAA70 .scope module, "mux4x1_tb" "mux4x1_tb" 2 1;
+ .timescale 0 0;
+v000001662F4D5C10_0 .var "I0", 0 0;
+v000001662F4D6250_0 .var "I1", 0 0;
+v000001662F4D5E90_0 .var "I2", 0 0;
+v000001662F4D6750_0 .var "I3", 0 0;
+v000001662F4D5F30_0 .var "S0", 0 0;
+v000001662F4D6110_0 .var "S1", 0 0;
+v000001662F4D5990_0 .net "f", 0 0, L_000001662F4D64D0;  1 drivers
+S_000001662F4DB100 .scope module, "uut" "mux4x1" 2 11, 3 12 0, S_000001662F4CAA70;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "I0";
+    .port_info 1 /INPUT 1 "I1";
+    .port_info 2 /INPUT 1 "I2";
+    .port_info 3 /INPUT 1 "I3";
+    .port_info 4 /INPUT 1 "S0";
+    .port_info 5 /INPUT 1 "S1";
+    .port_info 6 /OUTPUT 1 "f";
+v000001662F4D6430_0 .net "I0", 0 0, v000001662F4D5C10_0;  1 drivers
+v000001662F4D67F0_0 .net "I1", 0 0, v000001662F4D6250_0;  1 drivers
+v000001662F4D6890_0 .net "I2", 0 0, v000001662F4D5E90_0;  1 drivers
+v000001662F4D5B70_0 .net "I3", 0 0, v000001662F4D6750_0;  1 drivers
+v000001662F4D61B0_0 .net "S0", 0 0, v000001662F4D5F30_0;  1 drivers
+v000001662F4D6390_0 .net "S1", 0 0, v000001662F4D6110_0;  1 drivers
+v000001662F4D5AD0_0 .net "f", 0 0, L_000001662F4D64D0;  alias, 1 drivers
+v000001662F4D66B0_0 .net "mux_bot_out", 0 0, L_000001662F4D5D50;  1 drivers
+v000001662F4D62F0_0 .net "mux_top_out", 0 0, L_000001662F4D5CB0;  1 drivers
+S_000001662F4DB340 .scope module, "M1" "mux2x1" 3 28, 3 2 0, S_000001662F4DB100;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "s";
+    .port_info 3 /OUTPUT 1 "y";
+v000001662F4DB4D0_0 .net "a", 0 0, v000001662F4D5C10_0;  alias, 1 drivers
+v000001662F4CBAA0_0 .net "b", 0 0, v000001662F4D6250_0;  alias, 1 drivers
+v000001662F4CBB40_0 .net "s", 0 0, v000001662F4D5F30_0;  alias, 1 drivers
+v000001662F49F3A0_0 .net "y", 0 0, L_000001662F4D5CB0;  alias, 1 drivers
+L_000001662F4D5CB0 .functor MUXZ 1, v000001662F4D5C10_0, v000001662F4D6250_0, v000001662F4D5F30_0, C4<>;
+S_000001662F4D5440 .scope module, "M2" "mux2x1" 3 36, 3 2 0, S_000001662F4DB100;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "s";
+    .port_info 3 /OUTPUT 1 "y";
+v000001662F49F440_0 .net "a", 0 0, v000001662F4D5E90_0;  alias, 1 drivers
+v000001662F4D55D0_0 .net "b", 0 0, v000001662F4D6750_0;  alias, 1 drivers
+v000001662F4D5670_0 .net "s", 0 0, v000001662F4D5F30_0;  alias, 1 drivers
+v000001662F4D5710_0 .net "y", 0 0, L_000001662F4D5D50;  alias, 1 drivers
+L_000001662F4D5D50 .functor MUXZ 1, v000001662F4D5E90_0, v000001662F4D6750_0, v000001662F4D5F30_0, C4<>;
+S_000001662F4D57B0 .scope module, "M3" "mux2x1" 3 45, 3 2 0, S_000001662F4DB100;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "s";
+    .port_info 3 /OUTPUT 1 "y";
+v000001662F4D5A30_0 .net "a", 0 0, L_000001662F4D5CB0;  alias, 1 drivers
+v000001662F4D6070_0 .net "b", 0 0, L_000001662F4D5D50;  alias, 1 drivers
+v000001662F4D5DF0_0 .net "s", 0 0, v000001662F4D6110_0;  alias, 1 drivers
+v000001662F4D6610_0 .net "y", 0 0, L_000001662F4D64D0;  alias, 1 drivers
+L_000001662F4D64D0 .functor MUXZ 1, L_000001662F4D5CB0, L_000001662F4D5D50, v000001662F4D6110_0, C4<>;
+    .scope S_000001662F4CAA70;
+T_0 ;
+    %vpi_call 2 23 "$dumpfile", "mux4x1_waves.vcd" {0 0 0};
+    %vpi_call 2 24 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001662F4CAA70 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D5C10_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D6250_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D5E90_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D6750_0, 0, 1;
+    %vpi_call 2 30 "$display", "Testing Pattern: I0=%b, I1=%b, I2=%b, I3=%b", v000001662F4D5C10_0, v000001662F4D6250_0, v000001662F4D5E90_0, v000001662F4D6750_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D6110_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D5F30_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D6110_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D5F30_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D6110_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D5F30_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D6110_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D5F30_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D5C10_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D6250_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D5E90_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D6750_0, 0, 1;
+    %vpi_call 2 40 "$display", "Testing Pattern: I0=%b, I1=%b, I2=%b, I3=%b", v000001662F4D5C10_0, v000001662F4D6250_0, v000001662F4D5E90_0, v000001662F4D6750_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D6110_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D5F30_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D6110_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D5F30_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D6110_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001662F4D5F30_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D6110_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001662F4D5F30_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 46 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_000001662F4CAA70;
+T_1 ;
+    %vpi_call 2 51 "$monitor", "Time=%0t | S1=%b S0=%b || Output f=%b", $time, v000001662F4D6110_0, v000001662F4D5F30_0, v000001662F4D5990_0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "mux4to1_tb.v";
+    "mux4to1.v";

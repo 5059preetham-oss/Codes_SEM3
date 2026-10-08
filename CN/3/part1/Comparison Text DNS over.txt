@@ -1,0 +1,11 @@
+Comparison Text: DNS over UDP vs. DNS over TCP
+Observation & Analysis of DNS over TCP
+
+Transport Mechanism & Overhead: Standard DNS relies on UDP over port 53, which is connectionless and sends a single request datagram followed immediately by a single response datagram. In contrast, using the +tcp flag forces DNS to establish a reliable connection. Before any DNS query is sent, Wireshark captures a complete TCP three-way handshake between the client and resolver on port 53. 
+
+Packet Count: A standard UDP DNS resolution typically completes in 2 packets (1 query + 1 response). DNS over TCP requires at least 7 to 8 packets to complete the same transaction: 3 packets for connection setup, 2 for the DNS request and acknowledgment/reply, and 2 to 3 packets for graceful connection termination
+
+Message Framing: In Wireshark, the DNS payload in TCP is prepended with a 2-byte length field indicating the size of the DNS message, a structure not present in UDP datagrams.
+
+Practical Use: UDP is preferred for everyday lookups due to minimal latency and low transmission overhead. DNS switches to TCP primarily when the response exceeds standard UDP buffer limitations (e.g., responses $> 512$ bytes without EDNS, large DNSSEC responses) or during zone transfers (AXFR) between DNS servers
+

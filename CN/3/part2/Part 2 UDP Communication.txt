@@ -1,0 +1,33 @@
+Part 2: UDP Communication - Report
+
+1. How does UDP differ from TCP?
+
+UDP (User Datagram Protocol) and TCP (Transmission Control Protocol) are both transport layer protocols, but they differ significantly in how they handle data transmission:
+
+Connection Setup: UDP is a connectionless protocol, meaning it sends data immediately without establishing a connection. TCP is connection-oriented and requires a three-way handshake (SYN, SYN-ACK, ACK) before any data can be sent.
+
+Reliability: TCP guarantees the delivery of packets in the correct order and retransmits any lost packets. UDP provides no guarantee of delivery, order, or error recovery (it is a "best-effort" protocol).
+
+Header Overhead: UDP has a very lightweight, fixed 8-byte header. TCP has a much larger header (minimum 20 bytes) to accommodate sequencing, acknowledgments, and flow control mechanisms.
+
+Speed: Because it lacks connection setup and reliability overhead, UDP is much faster and has lower latency than TCP.
+
+2. Why is UDP suitable for DNS?
+UDP is the ideal transport protocol for standard DNS resolution for a few key reasons:
+
+Low Latency: Web browsing and network applications require nearly instantaneous domain name resolution. The speed of UDP, which avoids connection setup delays, ensures that DNS queries are resolved as quickly as possible
+
+Small Payload Size: Standard DNS queries and responses are typically very small (well under the traditional 512-byte limit) and fit perfectly inside a single UDP datagram.
+
+Simple Error Handling: If a DNS packet is dropped, it is often faster for the client to simply time out and send a new query rather than waiting for TCP's complex retransmission timers to kick in.
+
+3. Observations about UDP traffic in Wireshark:
+When analyzing the netcat UDP traffic in Wireshark, the connectionless nature of the protocol is visually apparent:
+
+No Handshake: The capture immediately shows the data payloads being transmitted. There are no preliminary packets establishing a connection, and no FIN or RST packets tearing it down.
+
+Header Simplicity: Inspecting the "User Datagram Protocol" layer reveals only four distinct fields: Source Port, Destination Port, Length, and Checksum.
+
+Lack of TCP Features: There is a complete absence of Sequence Numbers, Acknowledgment Numbers, and Window Size parameters, confirming that the protocol is not tracking packet order or managing network congestion.
+
+

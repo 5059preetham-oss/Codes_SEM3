@@ -1,0 +1,6 @@
+cd //path
+notepad filename.v
+iverilog -o t1 filename.v filename2.v ….
+vvp t1
+gtkwave filename.vcd
+w

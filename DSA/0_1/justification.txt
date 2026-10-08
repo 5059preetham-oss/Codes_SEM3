@@ -1,0 +1,22 @@
+A plain stack cannot efficiently enforce a capacity bound because evicting the oldest item requires removing an element from the "bottom" (the opposite end of the stack), which forces an O(n) time complexity in standard, single-directional data structures.
+
+Here is why both standard implementations fail to do this efficiently:
+
+Array-Backed Stack: In a standard array, the bottom of the stack is at index 0. If you remove the element at index 0, you must shift every other element in the array down by one position to fill the gap. This shifting operation takes O(n) time.
+
+Singly Linked-List Stack: To maintain O(1) time for standard push and pop operations, the "top" of the stack must be the head of the list. This makes the "bottom" of the stack the tail. In a singly linked list, removing the tail requires a reference to the second-to-last node to update its pointer to null. Since nodes only point forward, you must traverse the entire list from the head to find that node, which takes O(n) time.
+
+How to drop from the opposite end in O(1)
+To achieve O(1) operations at both ends, you must upgrade the structure to a Deque (Double-Ended Queue), typically implemented in one of two ways:
+
+1. Circular Buffer (Array-backed Deque)
+This uses a fixed-size array but treats it as a continuous loop using modulo arithmetic. Instead of shifting elements when the array is full, you overwrite the oldest data and move the boundary pointers.
+
+The O(1) Operation: You advance the "bottom" pointer to drop the oldest item:
+head_index = (head_index + 1) % capacity
+
+2. Doubly Linked-List
+Every node contains both a next and a prev pointer.
+
+The O(1) Operation: Because the tail node knows exactly what is behind it, you can drop the oldest item instantly without traversing the list:
+tail = tail.prev; tail.next = null;

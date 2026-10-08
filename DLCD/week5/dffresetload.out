@@ -1,0 +1,107 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "14.0 (devel)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000002655D1F41E0 .scope module, "dffresetload_tb" "dffresetload_tb" 2 1;
+ .timescale 0 0;
+v000002655D20A810_0 .var "CLK", 0 0;
+v000002655D20A310_0 .var "in", 0 0;
+v000002655D20A6D0_0 .var "load", 0 0;
+v000002655D20A270_0 .net "out", 0 0, v000002655D20A130_0;  1 drivers
+v000002655D20A770_0 .var "reset", 0 0;
+S_000002655D207C00 .scope module, "uut" "dffresetload" 2 6, 3 1 0, S_000002655D1F41E0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "in";
+    .port_info 1 /INPUT 1 "load";
+    .port_info 2 /INPUT 1 "reset";
+    .port_info 3 /INPUT 1 "CLK";
+    .port_info 4 /OUTPUT 1 "out";
+L_000002655D1F3830 .functor NOT 1, v000002655D20A770_0, C4<0>, C4<0>, C4<0>;
+L_000002655D1F3520 .functor AND 1, L_000002655D20A590, L_000002655D1F3830, C4<1>, C4<1>;
+v000002655D20A090_0 .net "CLK", 0 0, v000002655D20A810_0;  1 drivers
+v000002655D20A4F0_0 .net *"_ivl_2", 0 0, L_000002655D1F3830;  1 drivers
+v000002655D209EB0_0 .net "d_in", 0 0, L_000002655D1F3520;  1 drivers
+v000002655D20A9F0_0 .net "in", 0 0, v000002655D20A310_0;  1 drivers
+v000002655D20AB30_0 .net "load", 0 0, v000002655D20A6D0_0;  1 drivers
+v000002655D20A1D0_0 .net "mux_out", 0 0, L_000002655D20A590;  1 drivers
+v000002655D20A130_0 .var "out", 0 0;
+v000002655D209F50_0 .net "reset", 0 0, v000002655D20A770_0;  1 drivers
+E_000002655D1F2DB0 .event posedge, v000002655D20A090_0;
+L_000002655D20A590 .functor MUXZ 1, v000002655D20A130_0, v000002655D20A310_0, v000002655D20A6D0_0, C4<>;
+    .scope S_000002655D207C00;
+T_0 ;
+    %wait E_000002655D1F2DB0;
+    %load/vec4 v000002655D209EB0_0;
+    %assign/vec4 v000002655D20A130_0, 0;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_000002655D1F41E0;
+T_1 ;
+    %delay 5, 0;
+    %load/vec4 v000002655D20A810_0;
+    %inv;
+    %store/vec4 v000002655D20A810_0, 0, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_000002655D1F41E0;
+T_2 ;
+    %vpi_call 2 18 "$dumpfile", "dff_test.vcd" {0 0 0};
+    %vpi_call 2 19 "$dumpvars", 32'sb00000000000000000000000000000000, S_000002655D1F41E0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A810_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002655D20A770_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A6D0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002655D20A310_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002655D20A770_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A6D0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002655D20A310_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A770_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A6D0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002655D20A310_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A770_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002655D20A6D0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A310_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A770_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002655D20A6D0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002655D20A310_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A770_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A6D0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002655D20A310_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 31 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "diffresetload_tb.v";
+    "diffresetload.v";

@@ -1,0 +1,65 @@
+﻿Lab Experiment 2
+Ordered List of Integers — Applied to Rectangular Sites
+Topic: Structures, Functions, and Ordered Linked Lists in C
+1. Title
+Implementation of an Ordered List of Integers — Ordered List of Layout Sites by Area
+2. Problem Statement
+A residential/commercial layout consists of a number of rectangular sites, each described by its length and breadth. The objective of this lab is to design and implement a C program that maintains an ordered (sorted) singly linked list of such sites, where the ordering criterion is the area of each site (ascending order), and to build the required data structures and functions incrementally, starting from a simple rectangle abstraction and extending it into a linked-list based application.
+The list to be built already exists for integer keys (given as reference material from Session 1, Day 1 of the FDP). Students must generalize/modify this integer-key ordered list so that it stores rectangle structures instead of plain integers, and so that the ordering comparison is performed on the area of the rectangle rather than on a scalar key.
+3. Objectives
+1. Design a structure to represent a rectangular site with length and breadth.
+2. Implement functions to set, display, and compute the area of a rectangle.
+3. Modify a given ordered (sorted) linked list implementation so that its node stores a rectangle instead of an integer key.
+4. Modify the list's insert function to order rectangles by area using a comparison function defined on the rectangle structure.
+5. Write a client/driver program that reads dimensions of multiple sites from the keyboard, inserts them into the ordered list, and displays the resulting list.
+6. Extend the program to compute layout value, and to locate sites with extreme dimensions.
+4. Pre-requisites
+• C programming: structures, pointers, and dynamic memory allocation (malloc/free).
+• Concept of a linked list and node-based data structures.
+5. Task Description
+Step 1 — Create the Rectangle Abstraction
+To keep the problem simple, every site is modeled as a rectangle having a length and a breadth.
+• Define a structure named rect with two fields: length and breadth.
+• Implement a function to set (initialize) the length and breadth of a rect.
+• Implement a function to display a rect (print its length and breadth).
+• Implement a function to compute and return the area of a rect.
+• Write a small client program to test all of the above functions independently, before moving to Step 2.
+Files to be created in this step:
+rect.h          – structure definition and function prototypes
+rect.c          – implementation of set / display / area functions
+client_rect.c   – standalone test client that reads dimensions from the
+                  keyboard and exercises the rect.h / rect.c functions
+Step 2 — Build the Ordered List of Rectangles
+Starting from the given ordered linked-list-of-integers program (Session 1, Day 1 of the FDP), modify it as follows:
+1. Replace the field key_ in the node_t structure with a field of type struct rect (the rectangle defined in Step 1).
+2. Modify the display function of the list so that, for each node, it calls the rectangle's own display function to print the rectangle.
+3. Modify the insert function so that:
+◦ Given a length and breadth supplied by the client, a new rectangle is created and its dimensions are set using the Step-1 set function.
+◦ The comparison previously done on integer keys is replaced by a comparison function defined on the rect structure.
+◦ This comparison function must return true if the first rectangle is "smaller" than the second, where "smaller" is defined in terms of area (i.e., the comparison is based on the area computed by the Step-1 area function, not on length or breadth individually).
+4. The client program must read the number of rectangles (sites) and the dimensions of each rectangle from the keyboard, and insert each one into the list. Dimensions read from the keyboard need not be unique — duplicate areas must be handled correctly by the insert logic.
+Files to be created in this step (5 files in total for Step 2):
+rect.h    – rectangle structure and function prototypes
+rect.c    – rectangle set / display / area / compare functions
+list.h    – node and list structure, function prototypes
+             (node_t now holds a struct rect instead of an integer key)
+list.c    – ordered list implementation: insert (ordered by area),
+             display, and any other supporting list functions
+client.c  – driver program that reads the number of sites and the
+             length & breadth of each site, inserts them into the
+             ordered list, and displays the final ordered list
+Additional Problems (extend client.c / list.c as needed)
+1. Given the value of a unit area, compute and display the total value of the layout consisting of all the sites in the list.
+2. Given the list, find and display the site with the highest length.
+3. Given the list, find and display the site with the least breadth.
+6. Expected Deliverables
+Each student / team must submit the following as a single archive (zip) or a Word/PDF report along with the source code:
+FileNamePurpose1rect.hRectangle structure definition and function prototypes (set, display, area, compare).2rect.cImplementation of rectangle functions.3client_rect.cStandalone test client for the rectangle module (Step 1), reads dimensions from the keyboard.4list.hNode/list structure (holding a rect) and function prototypes for the ordered list.5list.cOrdered list implementation: insert-by-area, display, and supporting functions.6client.cFinal driver program: reads number of sites and dimensions, builds the ordered list, displays it, and solves the additional problems.
+In addition to the source files above, submit:
+• Sample input and corresponding output showing the ordered list of sites by area, for at least 5 sites with at least one repeated area.
+• Output demonstrating the three additional problems: total layout value, site with highest length, and site with least breadth.
+7. Notes
+• The list must remain ordered (ascending by area) after every insertion; do not sort at the end.
+• Handle duplicate areas gracefully (e.g., insert after/before equal-area nodes consistently).
+• Use dynamic memory allocation for each new node; free all allocated memory before program exit.
+• Follow modular design — do not mix list logic with rectangle logic; each module should only depend on the other through its header file.
