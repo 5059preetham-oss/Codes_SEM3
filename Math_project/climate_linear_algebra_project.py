@@ -28,12 +28,12 @@ import io
 import os
 import urllib.request
 
-import numpy as np
+import numpy as np  # pyright: ignore[reportMissingImports]
 
 try:
-    import matplotlib
+    import matplotlib  # pyright: ignore[reportMissingImports, reportMissingModuleSource]
     matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt  # pyright: ignore[reportMissingModuleSource]
     HAVE_PLT = True
 except ImportError:
     HAVE_PLT = False
