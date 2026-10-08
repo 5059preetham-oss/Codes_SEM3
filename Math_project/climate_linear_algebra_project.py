@@ -191,12 +191,6 @@ def banner(title):
     print("=" * 78)
 
 
-def viva(concept, purpose, outcome):
-    print(f"  [Viva]  Concept : {concept}")
-    print(f"          Purpose : {purpose}")
-    print(f"          Outcome : {outcome}")
-
-
 # ----------------------------------------------------------------------------
 # STEP 1: Real-world data
 # ----------------------------------------------------------------------------
@@ -244,8 +238,6 @@ def main():
     print(f"  V is {V.shape[0]}x{V.shape[1]};  row i = [1, t_i, t_i^2, ..., t_i^7]")
     print("  First 3 rows of V:\n", V[:3])
     print(f"  Condition number of V = {np.linalg.cond(V):.3e}")
-    viva("Vandermonde matrix", "turn 'find a polynomial through points' into V c = y",
-         "a square invertible system whose solution c gives the polynomial coefficients")
 
     # ------------------------------------------------------------------
     banner("STEP 3 - MATRIX SIMPLIFICATION (Gaussian elimination / RREF / LU)")
@@ -289,9 +281,6 @@ def main():
     print("  Year  true   estimated")
     for g, e in zip(gap_idx, gap_est):
         print(f"  {years[g]}  {temp[g]:+.2f}  {e:+.2f}")
-    viva("Gaussian elimination / RREF / LU", "solve V c = y exactly for polynomial coefficients",
-         f"estimated missing early-record years (RMSE {rmse_local:.2f} C with local fits); "
-         "high-degree global interpolation oscillates, so noisy data needs least squares")
 
     # ------------------------------------------------------------------
     # Model selection for the regression model (uses QR least squares)
@@ -325,9 +314,6 @@ def main():
     print("  Meaning: Col(A) is a %d-dimensional subspace (all polynomial trends of degree <= %d)"
           " living inside R^%d;" % (rank, DEG, n))
     print("  the observed data vector y does NOT lie in it (noise) -> no exact solution.")
-    viva("Vector space, subspace, basis, rank & nullity",
-         "understand what family of trends the model can represent",
-         f"Col(A) has dimension {rank}; nullity 0 means every trend has unique coefficients")
 
     # ------------------------------------------------------------------
     banner("STEP 5 - REMOVE REDUNDANCY (linear independence -> basis selection)")
@@ -346,8 +332,6 @@ def main():
               f"{np.linalg.norm(A_red @ null_vec):.1e}")
     print(f"  Basis selected (pivot columns kept): {piv_r}")
     print(f"  Our actual model has pivots {pivA}: all {p} columns independent -> they form a basis.")
-    viva("Linear independence / basis selection", "drop features that add no new information",
-         "only independent columns kept, so the least squares solution is unique")
 
     # ------------------------------------------------------------------
     banner("STEP 6 - ORTHOGONALIZATION (Gram-Schmidt -> orthonormal basis)")
@@ -356,8 +340,6 @@ def main():
     print(f"  ||Q^T Q - I|| = {np.linalg.norm(Q.T @ Q - np.eye(p)):.2e}")
     print(f"  ||A - QR||    = {np.linalg.norm(A - Q @ Rq):.2e}")
     print("  R (upper triangular):\n", Rq)
-    viva("Gram-Schmidt", "replace the skewed basis {1,t,t^2,..} by perpendicular unit vectors",
-         "Q with orthonormal columns; R makes the later solve a simple back substitution")
 
     # ------------------------------------------------------------------
     banner("STEP 7 - PROJECTION onto Col(A)")
@@ -371,8 +353,6 @@ def main():
     print(f"  Residual is orthogonal to Col(A): ||A^T r|| = {np.linalg.norm(A.T @ resid):.2e}")
     print(f"  Pythagoras: ||y||^2 = ||y_hat||^2 + ||r||^2 -> "
           f"{temp @ temp:.4f} = {y_hat @ y_hat + resid @ resid:.4f}")
-    viva("Orthogonal projection onto a subspace", "find the closest trend to the noisy data",
-         "y_hat = Py is the best approximation; the residual (noise) is perpendicular to the trend space")
 
     # ------------------------------------------------------------------
     banner("STEP 8 - PREDICTION / APPROXIMATION (Least Squares solution)")
@@ -388,8 +368,6 @@ def main():
     r2 = 1 - rss / float(((temp - temp.mean()) ** 2).sum())
     print(f"  Fit quality: RMSE = {np.sqrt(rss / n):.4f} C,  R^2 = {r2:.4f},  sigma_hat = {sigma:.4f} C")
     x_ls = x_qr
-    viva("Least squares (A^T A x = A^T y)", "no exact solution exists for noisy overdetermined data",
-         f"best-fit degree-{DEG} trend with R^2 = {r2:.3f}")
 
     # ------------------------------------------------------------------
     banner("STEP 9 - PATTERN DISCOVERY (eigenvalues & eigenvectors of A^T A)")
@@ -406,9 +384,6 @@ def main():
     print(f"  cond(A) = sqrt(lam_max / lam_min) = {cond:.2f}")
     share = lam / lam.sum() * 100
     print("  Share of total 'energy' per eigen-direction (%):", share)
-    viva("Eigenvalues & eigenvectors", "find the independent directions in which the data varies and test stability",
-         f"dominant direction carries {share[0]:.1f}% of the energy; condition number {cond:.1f} "
-         "shows the fit is numerically stable thanks to scaling the years")
 
     # ------------------------------------------------------------------
     banner("STEP 10 - SYSTEM SIMPLIFICATION (orthogonal diagonalization)")
@@ -419,9 +394,6 @@ def main():
     print("  Least squares via diagonalization x = Q_e Lambda^-1 Q_e^T A^T y:", x_diag)
     print(f"  max |x_diag - x_ls| = {np.max(np.abs(x_diag - x_ls)):.2e}")
     G_inv = vecs @ np.diag(1.0 / lam) @ vecs.T
-    viva("Diagonalization of a symmetric matrix", "turn the coupled normal equations into independent 1-D equations",
-         "the same coefficients obtained by simply dividing by eigenvalues; also gives (A^T A)^-1 "
-         "for uncertainty bands")
 
     # ------------------------------------------------------------------
     banner("FINAL APPLICATION OUTPUT - EXTRAPOLATION / CLIMATE FORECAST")
