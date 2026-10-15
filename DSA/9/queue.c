@@ -70,6 +70,7 @@ tree_node_t* dequeue(queue_t *ptr_queue)
 
 int is_full(queue_t *ptr_queue)
 {
+	(void)ptr_queue;
     queue_node_t* temp;
 	temp = (queue_node_t*)malloc(sizeof(queue_node_t));
     if (temp == NULL) {
