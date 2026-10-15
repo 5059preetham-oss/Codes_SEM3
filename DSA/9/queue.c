@@ -16,19 +16,18 @@ void deinit_queue(queue_t *ptr_queue)
 	ptr_queue->rear_ = ptr_queue->front_ = NULL;
 }
 
-static node_t* create_node(int key)
+static queue_node_t* create_node(tree_node_t* data)
 {
-	node_t* temp = (node_t*)malloc(sizeof(node_t));
-	temp->key_ = key;
+	queue_node_t* temp = (queue_node_t*)malloc(sizeof(queue_node_t));
+	temp->data_ = data;
 	return temp;
 }
 
-void enqueue(queue_t *ptr_queue, int key)
+void enqueue(queue_t *ptr_queue, tree_node_t* data)
 {
-	
 	if(! is_full(ptr_queue))
 	{
-		node_t* temp = create_node(key);
+		queue_node_t* temp = create_node(data);
 		temp->next_ = NULL;
 		if(ptr_queue->rear_ == NULL)
 		{
@@ -45,12 +44,14 @@ void enqueue(queue_t *ptr_queue, int key)
 		printf("queue full; cannot push\n");
 	}
 }
-int dequeue(queue_t *ptr_queue)
+
+tree_node_t* dequeue(queue_t *ptr_queue)
 {
 	if(! is_empty(ptr_queue))
 	{
-		int key;  node_t* temp = ptr_queue->front_;
-		key = temp->key_;
+		tree_node_t* data;  
+		queue_node_t* temp = ptr_queue->front_;
+		data = temp->data_;
 		
 		ptr_queue->front_ = temp->next_;
 		if(ptr_queue->front_ == NULL)
@@ -58,18 +59,19 @@ int dequeue(queue_t *ptr_queue)
 			ptr_queue->rear_ = NULL;
 		}
 		free(temp);
-		return key;
+		return data;
 	}
 	else 
 	{
 		printf("queue empty; cannot pop\n");
-		return '\0';
+		return NULL;
 	}
 }
+
 int is_full(queue_t *ptr_queue)
 {
-    node_t* temp;
-	temp = (node_t*)malloc(sizeof(node_t));
+    queue_node_t* temp;
+	temp = (queue_node_t*)malloc(sizeof(queue_node_t));
     if (temp == NULL) {
         return 1; 
     }

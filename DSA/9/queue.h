@@ -1,26 +1,27 @@
-#ifndef queue_H
-#define queue_H 
+#ifndef QUEUE_H
+#define QUEUE_H 
 
-struct node
+#include "tree.h"
+
+struct queue_node
 {
-	int key_;
-	struct node* next_;
+	tree_node_t* data_;
+	struct queue_node* next_;
 };
-typedef struct node node_t;
+typedef struct queue_node queue_node_t;
 
 struct queue 
 {
-	node_t* front_;
-	node_t* rear_;
+	queue_node_t* front_;
+	queue_node_t* rear_;
 };
 typedef struct queue queue_t;
 
 void init_queue(queue_t *ptr_queue);
 void deinit_queue(queue_t *ptr_queue);
-void enqueue(queue_t *ptr_queue, int key);
-int dequeue(queue_t *ptr_queue);
+void enqueue(queue_t *ptr_queue, tree_node_t* data);
+tree_node_t* dequeue(queue_t *ptr_queue);
 int is_empty(queue_t *ptr_queue);
 int is_full(queue_t *ptr_queue);
-
 
 #endif
