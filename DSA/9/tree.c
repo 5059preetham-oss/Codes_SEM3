@@ -88,3 +88,44 @@ void level_order(tree_t *ptr_tree)
     printf("\n");
     deinit_queue(&q);
 }
+
+void level_order_lines(tree_t *ptr_tree)
+{
+	queue_t q;
+	init_queue(&q);
+
+	printf("Level order lines :\n");
+	if(ptr_tree->root_ != NULL)
+	{
+		enqueue(&q, ptr_tree->root_);
+	}
+
+	while(! is_empty(&q))
+	{
+		int nodes_in_level = 0;
+		queue_node_t* current = q.front_;
+		while(current != NULL)
+		{
+			++nodes_in_level;
+			current = current->next_;
+		}
+
+		while(nodes_in_level > 0)
+		{
+			tree_node_t* temp = dequeue(&q);
+			printf("%d ", temp->key_);
+			if(temp->left_ != NULL)
+			{
+				enqueue(&q, temp->left_);
+			}
+			if(temp->right_ != NULL)
+			{
+				enqueue(&q, temp->right_);
+			}
+			--nodes_in_level;
+		}
+		printf("\n");
+	}
+
+	deinit_queue(&q);
+}

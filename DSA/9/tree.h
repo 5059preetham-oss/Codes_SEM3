@@ -20,5 +20,6 @@ void deinit(tree_t *ptr_tree);
 void disp(tree_t *ptr_tree);
 void insert(tree_t *ptr_tree, int key);
 void level_order(tree_t *ptr_tree);
+void level_order_lines(tree_t *ptr_tree);
 
 #endif
