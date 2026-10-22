@@ -1,0 +1,85 @@
+(.venv) PS C:\Users\preet\Documents\SEM_3\Codes_SEM3\DSA\10> gcc -Wall -Wextra -std=c99 client.c graph.c -o client.exe
+(.venv) PS C:\Users\preet\Documents\SEM_3\Codes_SEM3\DSA\10> ./client.exe
+==== Handout graph (8 vertices, 11 edges) ====
+A   0  1  1  0  0  0  0  0
+B   1  0  1  1  0  0  0  0
+C   1  1  0  0  1  0  0  0
+D   0  1  0  0  1  1  0  0
+E   0  0  1  1  0  0  1  0
+F   0  0  0  1  0  0  1  1
+G   0  0  0  0  1  1  0  1
+H   0  0  0  0  0  1  1  0
+Eulerian check   : Not Eulerian
+Star check       : Not a star
+Network topology : Hybrid
+
+==== Cycle of 5 vertices ====
+A   0  1  0  0  1 
+B   1  0  1  0  0
+C   0  1  0  1  0
+D   0  0  1  0  1
+E   1  0  0  1  0
+Eulerian check   : Euler circuit exists
+Star check       : Not a star
+Network topology : Ring
+
+==== Path of 4 vertices ====
+A   0  1  0  0
+B   1  0  1  0 
+C   0  1  0  1
+D   0  0  1  0 
+Eulerian check   : Euler path only
+Star check       : Not a star
+Network topology : Bus
+
+==== Star with 1 hub and 5 leaves ====
+A   0  1  1  1  1  1 
+B   1  0  0  0  0  0
+C   1  0  0  0  0  0 
+D   1  0  0  0  0  0 
+E   1  0  0  0  0  0 
+F   1  0  0  0  0  0 
+Eulerian check   : Not Eulerian
+Star check       : Star, hub = A
+Network topology : Star
+
+==== Complete graph K5 ====
+A   0  1  1  1  1 
+B   1  0  1  1  1 
+C   1  1  0  1  1 
+D   1  1  1  0  1 
+E   1  1  1  1  0 
+Eulerian check   : Euler circuit exists
+Star check       : Not a star
+Network topology : Full Mesh
+
+==== Binary tree, 7 vertices ====
+A   0  1  1  0  0  0  0 
+B   1  0  0  1  1  0  0 
+C   1  0  0  0  0  1  1
+D   0  1  0  0  0  0  0 
+E   0  1  0  0  0  0  0 
+F   0  0  1  0  0  0  0 
+G   0  0  1  0  0  0  0 
+Eulerian check   : Not Eulerian
+Star check       : Not a star
+Network topology : Tree
+
+==== Bow-tie (two triangles sharing a vertex) ====
+A   0  1  1  0  0 
+B   1  0  1  0  0 
+C   1  1  0  1  1 
+D   0  0  1  0  1 
+E   0  0  1  1  0 
+Eulerian check   : Euler circuit exists
+Star check       : Not a star
+Network topology : Hybrid
+
+==== Disconnected graph ====
+A   0  1  0  0 
+B   1  0  0  0 
+C   0  0  0  1 
+D   0  0  1  0 
+Eulerian check   : Not Eulerian
+Star check       : Not a star
+Network topology : Not a network
